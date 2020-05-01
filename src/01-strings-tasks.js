@@ -271,9 +271,8 @@ function encodeToRot13(str) {
  *   isString('test') => true
  *   isString(new String('test')) => true
  */
-function isString(/* value */) {
-  throw new Error('Not implemented');
-  // return (typeof (value) === 'string');
+function isString(value) {
+  return typeof value === 'string' || value instanceof String;
 }
 
 
@@ -283,6 +282,9 @@ function isString(/* value */) {
  * Playing cards inittial deck inclides the cards in the following order:
  *
  *  'A♣','2♣','3♣','4♣','5♣','6♣','7♣','8♣','9♣','10♣','J♣','Q♣','K♣',
+ *  '0', '1', '2',
+ *  '13', '14', '15',
+ *  '25', '26', '27',
  *  'A♦','2♦','3♦','4♦','5♦','6♦','7♦','8♦','9♦','10♦','J♦','Q♦','K♦',
  *  'A♥','2♥','3♥','4♥','5♥','6♥','7♥','8♥','9♥','10♥','J♥','Q♥','K♥',
  *  'A♠','2♠','3♠','4♠','5♠','6♠','7♠','8♠','9♠','10♠','J♠','Q♠','K♠'
@@ -301,8 +303,14 @@ function isString(/* value */) {
  *   'Q♠' => 50
  *   'K♠' => 51
  */
-function getCardId(/* value */) {
-  throw new Error('Not implemented');
+function getCardId(value) {
+  const suits = ['♣', '♦', '♥', '♠'];
+  const setCards = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
+
+  const cardIndex = setCards.findIndex((card) => value.includes(card));
+  const suitIndex = suits.findIndex((suit) => value[value.length - 1] === suit) * 13;
+
+  return cardIndex + suitIndex;
 }
 
 
