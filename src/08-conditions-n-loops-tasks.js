@@ -91,14 +91,11 @@ function getSumBetweenNumbers(n1, n2) {
  *   10,1,1   =>  false
  *   10,10,10 =>  true
  */
-function isTriangle(/* a, b, c */) {
-  throw new Error('Not implemented');
-  // const arg = [a, b, c];
-  // const maxSide = Math.max(a, b, c);
-  // if (a + b >= c) return true;
-  // if (a + c >= b) return true;
-  // if (b + c >= a) return true;
-  // return false;
+function isTriangle(a, b, c) {
+  const max = Math.max(a, b, c);
+  const sum = a + b + c - max;
+
+  return max < sum;
 }
 
 
@@ -348,8 +345,8 @@ function isBracketsBalanced(/* str */) {
  *    365, 4  => '11231'
  *    365, 10 => '365'
  */
-function toNaryString(/* num, n */) {
-  throw new Error('Not implemented');
+function toNaryString(num, n) {
+  return num.toString(n);
 }
 
 
